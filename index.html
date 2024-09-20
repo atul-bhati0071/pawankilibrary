@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="stylses.css" />
+    <style>
+      body {
+        background-color: antiquewhite;
+      }
+      .back_colour {
+        background-color: antiquewhite;
+      }
+      /* Custom CSS for carousel */
+      @media (max-width: 768px) {
+        .carousel-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+        .carousel-item .row {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+        }
+        .carousel-item .card {
+          flex: 0 0 auto;
+          width: 250px;
+          margin-right: 15px;
+        }
+      }
+      @media (max-width: 576px) {
+        .carousel-item {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+        .carousel-item .row {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+        }
+        .carousel-item .card {
+          flex: 0 0 auto;
+          width: 250px;
+          margin-right: 15px;
+        }
+      }
+      .card {
+        position: relative;
+        overflow: hidden;
+        border: none; /* Remove the border if you want a cleaner look */
+      }
+      .card-img-top {
+        transition: transform 0.5s ease, filter 0.5s ease;
+        filter: grayscale(0%);
+      }
+      .card:hover .card-img-top {
+        transform: scale(1.1);
+        filter: grayscale(50%);
+      }
+      .card-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+        color: white;
+        transform: translateY(100%);
+        transition: transform 0.5s ease;
+      }
+      .card:hover .card-body {
+        transform: translateY(0);
+        color: white;
+      }
+      .card-title {
+        font-size: 1.2rem;
+        color: white;
+        font-weight: bold;
+      }
+      .card-text {
+        font-size: 0.9rem;
+        color: white;
+      }
+      /* Footer styles */
+      footer {
+        background-color: #343a40; /* Dark background for footer */
+        color: white;
+        padding: 20px;
+      }
+      .icon-container {
+        margin-top: 10px;
+      }
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        margin: 0 10px;
+        background-color: #343a40; /* Match icon background to footer */
+        border-radius: 50%;
+        fill: white;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .social-icon:hover {
+        background-color: #495057; /* Slightly lighter color on hover */
+        transform: scale(1.1); /* Slightly enlarge the icon on hover */
+      }
+      .circle-img {
+        width: 250px;
+        height: 250px; /* Adjust the height to match the width for a perfect circle */
+        object-fit: cover; /* Ensures the image covers the circle without distortion */
+        border-radius: 50%; /* Makes the image circular */
+      }
+
+      .student-item {
+        display: flex;
+        align-items: flex-start; /* Aligns the items to the top */
+      }
+
+      .rounded-img {
+        width: 150px; /* Adjust as needed */
+        height: 150px; /* Keep height equal to width for a square image */
+        object-fit: cover; /* Ensure the image covers the area */
+        border-radius: 8px; /* Optional: rounded corners for a softer look */
+        margin-right: 15px; /* Space between image and text */
+      }
+
+      .description {
+        flex: 1; /* Takes up remaining space */
+        display: flex;
+        flex-direction: column; /* Aligns the content vertically */
+      }
+    </style>
+    <title>Pawan ki Library</title>
+  </head>
+  <body>
+    <!-- Header / Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          >Pawan ki Library
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-book"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"
+            />
+          </svg>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#home"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#books">Books</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#facilities">Facilities</a>
+            </li>
+            <li class="nav-item">
+              <button
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#contactModal"
+              >
+                Contact Us
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="p-5 text-center">
+      <div class="container">
+        <h1>Welcome to Pawan ki Library</h1>
+        <p>Your gateway to a world of knowledge and learning.</p>
+      </div>
+    </section>
+
+    <!-- Books Section with Carousel -->
+    <section id="books" class="p-5 bg-light back_colour">
+      <div class="container">
+        <h2>Our Book Collection</h2>
+        <div id="booksCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <div class="card mb-4">
+                <img
+                  src="Images/book2.jpg"
+                  class="card-img-top"
+                  alt="Book 1"
+                  width="250"
+                  height="350"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">General knowledge 2022</h5>
+                  <p class="card-text">
+                    This book provides a comprehensive overview of significant
+                    events, milestones, and general knowledge topics from the
+                    year 2022. Ideal for competitive exams and general
+                    awareness.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <div class="card mb-4">
+                <img
+                  src="Images/book1.webp"
+                  class="card-img-top"
+                  alt="Book 2"
+                  width="250"
+                  height="350"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">General knowledge 2023</h5>
+                  <p class="card-text">
+                    Covering the most crucial updates and events of 2023, this
+                    book is a must-have for those seeking to stay informed and
+                    prepared for various exams.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+              <div class="card mb-4">
+                <img
+                  src="Images/book3.jpg"
+                  class="card-img-top"
+                  alt="Book 3"
+                  width="250"
+                  height="350"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">General knowledge 2024</h5>
+                  <p class="card-text">
+                    A detailed compilation of the latest developments in 2024,
+                    offering insights into current affairs, global events, and
+                    important topics for students and professionals alike.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+              <div class="card mb-4">
+                <img
+                  src="Images/book4.jpg"
+                  class="card-img-top"
+                  alt="Book 4"
+                  width="250"
+                  height="350"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">General knowledge by Lucent</h5>
+                  <p class="card-text">
+                    A widely acclaimed resource, the Lucent GK book offers
+                    concise yet thorough coverage of all major general knowledge
+                    topics, including history, geography, science, and current
+                    affairs.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="carousel-item">
+              <div class="card mb-4">
+                <img
+                  src="Images/book5.jpg"
+                  class="card-img-top"
+                  alt="Book 5"
+                  width="250"
+                  height="350"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Reasoning</h5>
+                  <p class="card-text">
+                    Focused on advanced reasoning techniques, this book helps
+                    you tackle complex problems with ease, making it perfect for
+                    high-level exams.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Slide 6 -->
+            <div class="carousel-item">
+              <div class="card mb-4">
+                <img
+                  src="Images/book6.jpg"
+                  class="card-img-top"
+                  alt="Book 6"
+                  width="250"
+                  height="350"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Reasoning by Ankit Sir</h5>
+                  <p class="card-text">
+                    This book provides step-by-step strategies and practice
+                    questions to master logical reasoning, essential for acing
+                    competitive exams.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#booksCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#booksCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="facilities" class="p-5 bg-light back_colour">
+      <div class="container">
+        <h2>Library Facilities</h2>
+        <ul class="list-group">
+          <li class="list-group-item">Fully Air-Conditioned Environment</li>
+          <li class="list-group-item">Daily Newspapers & Monthly Magazines</li>
+          <li class="list-group-item">
+            Quiet Study Rooms & Comfortable Seating
+          </li>
+          <li class="list-group-item">Computer Workstations with Free Wi-Fi</li>
+          <li class="list-group-item">
+            Printers, Copiers, and Scanner Services
+          </li>
+          <li class="list-group-item">Audiovisual Rooms & Conference Rooms</li>
+          <li class="list-group-item">Children’s Reading Area & Teen Zone</li>
+          <li class="list-group-item">
+            Free Access to Digital Resources and eBooks
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="p-5">
+      <div class="container">
+        <h2>About Us</h2>
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <img
+              src="Images/opening.jpg"
+              class="img-fluid rounded"
+              alt="Library"
+            />
+          </div>
+          <div class="col-md-8">
+            <p>
+              Pawan ki Library was founded with the mission of creating a space
+              for learning and growth. Nestled in the heart of Islamnagar city,
+              our library has become a hub of knowledge, community, and cultural
+              exchange.
+            </p>
+            <p>
+              Our library offers a vast collection of books, resources, and a
+              welcoming environment that encourages intellectual curiosity. We
+              host various events, workshops, and seminars to engage the
+              community and promote lifelong learning.
+            </p>
+            <p>
+              Join us and be a part of a community that values education,
+              knowledge, and personal growth. Whether you’re a student,
+              professional, or simply someone with a love for reading, Pawan ki
+              Library has something for everyone.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Founder Section -->
+    <section id="founder" class="p-5">
+      <div class="container">
+        <h2>About Our Founder</h2>
+        <div class="row align-items-center">
+          <div class="col-md-4">
+            <img
+              src="Images/founder.jpg"
+              class="img-fluid rounded"
+              alt="Founder"
+            />
+          </div>
+          <div class="col-md-8">
+            <p>
+              Mr. Pawan Gaur, the visionary behind Pawan ki Library, has
+              dedicated his life to promoting education and knowledge in the
+              community. With a deep passion for learning and a strong belief in
+              the power of books, he founded the library to create a space where
+              people of all ages can come together to learn, grow, and connect.
+            </p>
+            <p>
+              Under his leadership, the library has grown into a vibrant
+              community hub, offering a wide range of resources and programs
+              that cater to the diverse needs of its members. Mr. Gaur's
+              commitment to education and community service has made a lasting
+              impact on the city of Islamnagar and beyond.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Students Slider Section -->
+    <section id="students" class="p-5 bg-light">
+      <div class="container">
+        <h2>Selected Students</h2>
+        <div
+          id="studentCarousel"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+              <div class="d-flex align-items-start student-item">
+                <img
+                  src="Images/boy1.jpg"
+                  class="d-block rounded-img"
+                  alt="Student 1"
+                />
+                <div class="ms-3 description">
+                  <h5>Mr. Aakash</h5>
+                  <p>
+                    Mr. Aakash has successfully been selected for the Agniveer
+                    program. This prestigious role involves serving as a soldier
+                    in the Indian Armed Forces.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <div class="d-flex align-items-start student-item">
+                <img
+                  src="Images/boy2.jpg"
+                  class="d-block rounded-img"
+                  alt="Student 2"
+                />
+                <div class="ms-3 description">
+                  <h5>Mr. Amit</h5>
+                  <p>
+                    Mr. Amit has demonstrated exceptional academic performance
+                    and has been selected for the role of Head Constable
+                    (Ministerial) in the CRPF.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+              <div class="d-flex align-items-start student-item">
+                <img
+                  src="Images/boy3.jpg"
+                  class="d-block rounded-img"
+                  alt="Student 3"
+                />
+                <div class="ms-3 description">
+                  <h5>Mr. Karan</h5>
+                  <p>
+                    Mr. Karan has shown significant improvement and dedication
+                    in his studies, leading to his selection in the UPSI exam.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#studentCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#studentCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white text-center p-3">
+      <p>&copy; 2024 Pawan ki Library. All rights reserved.</p>
+      <p>
+        Contact us:
+        <a href="mailto:info@pawaknilibrary.com">info@pawanlibrary.com</a>
+      </p>
+      <div class="icon-container">
+        <a href="https://www.facebook.com/pavan.gaur.9">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="social-icon bi bi-facebook"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"
+            /></svg
+        ></a>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="social-icon bi bi-twitter"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15"
+          />
+        </svg>
+        <a href="https://whatsapp.com/channel/0029VaI9csgKWEKxWkleeC1j">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="social-icon bi bi-whatsapp"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"
+            />
+          </svg>
+        </a>
+
+        <a
+          href="https://www.instagram.com/pawan.gaur.9?igsh=cXl6YjhjdTRybnQx"
+          rel="noopener noreferrer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="social-icon bi bi-instagram"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+          >
+            <path
+              d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.282.11-.706.241-1.486.276-.843.038-1.096.046-3.231.046s-2.389-.008-3.232-.046c-.78-.035-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.598-.92c-.11-.282-.241-.705-.276-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.388.046-3.231c.035-.78.166-1.204.276-1.486.145-.373.319-.64.598-.92a2.5 2.5 0 0 1 .92-.599c.281-.11.705-.241 1.485-.276.844-.038 1.096-.046 3.232-.046zm.002 2.542a4.016 4.016 0 1 0 0 8.033 4.016 4.016 0 0 0 0-8.033zm0 1.636a2.38 2.38 0 1 1 0 4.762 2.38 2.38 0 0 1 0-4.762zm4.833-.4a.96.96 0 1 1-1.92 0 .96.96 0 0 1 1.92 0z"
+            />
+          </svg>
+        </a>
+      </div>
+    </footer>
+    <!-- Modal for Contact Us -->
+    <!-- Modal HTML -->
+    <div
+      class="modal fade"
+      id="contactModal"
+      tabindex="-1"
+      aria-labelledby="contactModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="contactModalLabel">Contact Us</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="contactForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" required />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript to handle form submission -->
+    <script>
+      // Show the modal after 5 seconds
+      setTimeout(function () {
+        var contactModal = new bootstrap.Modal(
+          document.getElementById("contactModal")
+        );
+        contactModal.show();
+      }, 5000);
+
+      // Handle form submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          // Capture form data
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+          console.log(name, email, message);
+
+          // Prepare data to send
+          const formData = {
+            name: name,
+            email: email,
+            message: message,
+          };
+
+          fetch("http://localhost:3000/send-email", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              console.log(data);
+              alert(
+                "Thank you for contacting us! We will get back to you shortly."
+              );
+
+              // Close the modal after submission
+              var contactModal = bootstrap.Modal.getInstance(
+                document.getElementById("contactModal")
+              );
+              contactModal.hide();
+            })
+            .catch((error) => {
+              console.error("Error sending email:", error);
+              alert("Oops! Something went wrong. Please try again later.");
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    />
+  </body>
+</html>
